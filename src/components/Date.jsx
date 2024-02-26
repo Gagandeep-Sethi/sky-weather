@@ -26,7 +26,7 @@ const ISTDateTime = () => {
   return (
     <div>
       
-      <p className='text-xl text-white font-semibold text-pretty'>{istDateTime}</p>
+      <p className='text-xl text-white font-extralight '>{istDateTime +" (IST)"}</p>
     </div>
   );
 };
