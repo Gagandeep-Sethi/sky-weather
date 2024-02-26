@@ -3,7 +3,7 @@ import React, { useEffect } from 'react'
 const CurrentWeather = () => {
 
     const getWeatherData=async()=>{
-        const data=await fetch("http://api.openweathermap.org/data/2.5/forecast?id=524901&appid=2a2f3b9e696007085a2813ceb7c7abf2")
+        const data=await fetch("http://api.openweathermap.org/data/2.5/forecast?id=524901&appid="+process.env.REACT_APP_ApiKey)
         const json=await data.json()
         console.log(json)
       }
