@@ -1,27 +1,27 @@
-import React from 'react'
-import logo from '../images/logo.png'
-import { github_URL } from '../utils/constants'
-import github_logo from '../images/github-logo.png'
+import React from 'react';
+import logo from '../images/logo.png';
+import { github_URL } from '../utils/constants';
+import github_logo from '../images/github-logo.png';
+import ISTDateTime from './Date';
 
 const Header = () => {
   return (
-    <div>
+    <div className=' my-4 left-1/2 transform -translate-x-1/2  h-[10%] w-[98%] bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm fixed top-0 rounded-full xl xl:rounded-2xl '>
+      <div className='flex justify-between w-full border-2 border-white px-3  h-full items-center rounded-full xl xl:rounded-2xl'>
         <div>
-            <img src={logo} alt='logo'/>
+          <img className='w-14' src={logo} alt='logo'/>
         </div>
         <div>
-
-
+          <ISTDateTime/>
         </div>
-        <div>
-            <a href={github_URL} target="_blank" rel="noopener noreferrer">
-                <img src={github_logo} alt='logo'/>
-
-            </a>
+        <div className='flex justify-center items-center w-14 h-full'>
+          <a href={github_URL} target="_blank" rel="noopener noreferrer">
+            <img src={github_logo} alt='logo'/>
+          </a>
         </div>
-
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Header
+export default Header;
