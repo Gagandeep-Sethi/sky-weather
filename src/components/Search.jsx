@@ -2,7 +2,9 @@ import React from 'react'
 
 const Search = () => {
   return (
-    <div></div>
+    <div className='h-[10%] w-[98%]'>
+
+    </div>
   )
 }
 
