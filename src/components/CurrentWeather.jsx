@@ -10,10 +10,18 @@ const CurrentWeather = () => {
    
   const [cli ,setCli]=useState(null)
     const getWeatherData=async()=>{
-        const data=await fetch("https://api.openweathermap.org/data/2.5/weather?lat=55.7522&lon=37.6156&appid=2a2f3b9e696007085a2813ceb7c7abf2&units=metric")
+      try {
+        const data=await fetch("https://api.openweathermap.org/data/2.5/weather?lat=29.9674&lon=77.5456&appid=2a2f3b9e696007085a2813ceb7c7abf2&units=metric")
         const json=await data.json()
-        console.log(json)
+        //console.log(json)
         setCli(json)
+      } catch (error) {
+        console.log(error)
+        
+      }
+      
+
+        
       }
       useEffect(()=>{
        getWeatherData()
