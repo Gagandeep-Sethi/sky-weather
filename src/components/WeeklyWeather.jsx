@@ -18,7 +18,7 @@ const WeeklyWeather = () => {
       <div className='mt-6'>
       {cli &&
         Object.keys(cli).filter((date, index) => index !== 0).map((date) => {
-          //console.log(cli[date])
+          
 
           return (
             <WeatherCard key={date} everyDay={cli[date]}/>

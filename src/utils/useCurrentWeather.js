@@ -5,7 +5,7 @@ const useCurrentWeather = (setCli,cityName) => {
         try {
           const data=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_ApiKey}&units=metric`)
           const json=await data.json()
-          //console.log(json)
+          
           setCli(json)
         } catch (error) {
           console.log(error)

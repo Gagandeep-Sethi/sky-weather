@@ -18,13 +18,13 @@ const useWeeklyWeather = (setCli,cityName,todayWeather,setError,setTodayWeather)
           
           setCli(groupedData);
           setTodayWeather(groupedData[Object.keys(groupedData).filter((date, index) => index === 0)])
-          console.log(groupedData[Object.keys(groupedData).filter((date, index) => index === 0)])
+          
           
         } catch (error) {
           console.log(error);
         }
       };
-      console.log(todayWeather)
+      
     
       useEffect(() => {
         getWeatherData();

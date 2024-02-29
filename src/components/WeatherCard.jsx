@@ -6,7 +6,7 @@ import temp from '../images/temp.png';
 import wind from '../images/wind.png';
 
 const WeatherCard = ({everyDay}) => {
-    //console.log(everyDay)
+    
     const totalTemp = everyDay.reduce((total, obj) => total + obj?.main?.temp, 0);
     const avgTemp = (totalTemp / everyDay.length).toFixed(2);
 
@@ -20,7 +20,7 @@ const WeatherCard = ({everyDay}) => {
     const avgWind = (totalWind / everyDay.length).toFixed(2);
 
     
-    //console.log(avgTemp)
+    
     
     function getWeekday(dateString) {
         
