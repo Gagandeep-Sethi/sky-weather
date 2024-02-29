@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext,  useState } from 'react'
 import { icon_URL } from '../utils/constants'
 import clouds from '../images/clouds.png';
 import humidity from '../images/humidity.png';
@@ -6,30 +6,16 @@ import temp from '../images/temp.png';
 import wind from '../images/wind.png';
 import { CityContext } from '../utils/CityContext';
 import { WeatherContext } from '../utils/WeatherContext';
+import useCurrentWeather from '../utils/useCurrentWeather';
 
 
 const CurrentWeather = () => {
    const {todayWeather}=useContext(WeatherContext)
   const [cli ,setCli]=useState(null)
   const {cityName}=useContext(CityContext)
-    const getWeatherData=async()=>{
-      try {
-        const data=await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${cityName}&appid=${process.env.REACT_APP_ApiKey}&units=metric`)
-        const json=await data.json()
-        //console.log(json)
-        setCli(json)
-      } catch (error) {
-        console.log(error)
-        
-      }
-      
+  
+  useCurrentWeather(setCli,cityName)
 
-        
-      }
-      useEffect(()=>{
-       cityName&&getWeatherData()
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      },[cityName])
 
 
   return (cli?.cod==="404"?<h1 className='text-white font-semibold text-2xl text-center'>OOps.... City not Found , try searching some other city</h1>:
