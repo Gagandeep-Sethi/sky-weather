@@ -6,7 +6,7 @@ import temp from '../images/temp.png';
 import wind from '../images/wind.png';
 import { CityContext } from '../utils/CityContext';
 import { WeatherContext } from '../utils/WeatherContext';
-import useCurrentWeather from '../utils/useCurrentWeather';
+import useCurrentWeather from '../utils/Hooks/useCurrentWeather';
 
 
 const CurrentWeather = () => {
