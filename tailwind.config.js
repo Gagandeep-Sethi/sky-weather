@@ -4,8 +4,14 @@ module.exports = {
     "./src/**/*.{js,jsx}"
   ],
   theme: {
-    extend: {},
+    extend: {
+      screens: {
+        'ipad': '768px',
+        
+      },
+    },
   },
   plugins: [],
+  variants: {},
 }
 

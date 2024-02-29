@@ -1,71 +1,72 @@
-import React, { useContext, useEffect, useState } from 'react'
+import React, { useContext, useState } from 'react'
 import { CityContext } from "../utils/CityContext";
+import useSearch from '../utils/Hooks/useSearch';
 
 const Search = () => {
   
-  const {  cityName,setCityName } = useContext(CityContext);
+  const {  setCityName } = useContext(CityContext);
   const[search,setSearch]=useState('')
   const[searchOption,setSearchOption]=useState(null)
-  const url = `https://wft-geo-db.p.rapidapi.com/v1/geo/cities?namePrefix=${search}`;
-  const options = {
-    method: 'GET',
-    headers: {
-      'X-RapidAPI-Key': process.env.REACT_APP_GeoApiKey,
-      'X-RapidAPI-Host': 'wft-geo-db.p.rapidapi.com'
-    }
-  };
+  const[focus,setFocus]=useState(false)
+  useSearch(search,setSearchOption)
   
-  const  handleSelectChange=(e)=>{
-   setSearch(e.target.value)
-  }
-  const handleClick=(e)=>{
-    e.preventDefault()
-    setCityName(search)
-    //console.log(cityName)
-
-  }
-  
-    const getWeatherData=async()=>{
-      try {
-        const response = await fetch(url, options);
-        const result = await response.json();
-        //console.log(result?.data)
-
-        
-
-
-        setSearchOption(result?.data)
-        
-      } catch (error) {
-        console.error(error);
-      }}
-
-      useEffect(()=>{
-        setTimeout(()=>{
-          getWeatherData()
-        },600)
-      // eslint-disable-next-line react-hooks/exhaustive-deps
-      },[search])
 
 
 
   return (
-    <div className=''>
-      <form >
-        <input type='text' placeholder='Search' value={search}  onChange={(e)=>setSearch(e.target.value)}></input>
-        <select className=''  onChange={handleSelectChange}>
-        <option value="">🔽</option>
-        {searchOption&&searchOption.map((options, index) => (
-          <option key={options?.id} value={options?.city}>
-            {options?.city}{options?.countryCode}
-          </option>
-        ))}
-      </select>
-        <button type='submit' onClick={handleClick}>search</button>
+    <div className='relative flex justify-center '>
+  <input onClick={()=>setFocus(true)   } onMouseDown={()=>setFocus(false)}
+    className='w-1/2  rounded-lg border border-gray-300 px-2 py-1 focus:outline-none focus:border-blue-500'
+    type='text'
+    placeholder='Search'
+    value={search}
+    onChange={(e) => setSearch(e.target.value)}
+  />
+  {focus?<div className='absolute top-full left-[22%] w-1/2'>
+    <div className='bg-white rounded-lg '>
+      <ul>
         
-      </form>
+          {searchOption&&searchOption.map((options) => (
+            <li 
+            
+              onClick={() => {
+                setSearch(options.city)
+                setFocus(false);
+              }}
+              className='py-1 px-2 cursor-pointer hover:bg-gray-100'
+              key={options?.id}
+            >
+              {options?.city}, {options?.countryCode}
+            </li>
+          ))}
+      </ul>
     </div>
+  </div>:null}
+  <button
+    className='bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-lg 
+    '
+    type='submit'
+    onClick={(e)=>{
+      e.preventDefault()
+      setFocus(false)
+    setCityName(search)
+    }}
+  >
+    Search
+  </button>
+</div>
+
+
   )
 }
 
 export default Search
+
+//  <select className='w-6 rounded-lg border border-gray-300 px-2 py-1 focus:outline-none focus:border-blue-500' onChange={handleSelectChange}>
+//       <option value=""></option>
+//       {searchOption && searchOption.map((options, index) => (
+//         <option key={options?.id} value={options?.city}>
+//           {options?.city} {options?.countryCode}
+//         </option>
+//       ))}
+//     </select> 

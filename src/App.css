@@ -1,3 +1,17 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+@media (min-width: 760px) {
+    .ipad\:flex {
+      display: flex;
+    }
+    .ipad\:w-1\/2 {
+      width: 50%;
+    }
+    .ipad\:h-1\/2 {
+      height: 50%;
+    }
+    .ipad\:h-full {
+      height: 100%;
+    }
+  }

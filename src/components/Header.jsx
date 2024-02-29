@@ -6,8 +6,8 @@ import ISTDateTime from './Date';
 
 const Header = () => {
   return (
-    <div className=' my-4 left-1/2 transform -translate-x-1/2  h-[10%] w-[98%] bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm absolute top-0 rounded-full xl xl:rounded-2xl '>
-      <div className='flex justify-between w-full border-2 border-white px-3  h-full items-center rounded-full  xl:rounded-2xl'>
+    <div className=' my-4 left-1/2 transform -translate-x-1/2  h-[10%] w-[98%] bg-white bg-opacity-15 backdrop-filter backdrop-blur-sm absolute top-0 rounded-3xl xl xl:rounded-2xl '>
+      <div className='flex justify-between w-full border-2 border-white px-3  h-full items-center rounded-3xl  xl:rounded-2xl'>
         <div className='xl:flex xl:items-center'>
           <img className='w-14 ml-4 xl:ml-0' src={logo} alt='logo'/>
           <p className='  text-white font-bold text-2xl'>SkyWatch</p>

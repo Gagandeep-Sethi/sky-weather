@@ -1,45 +1,20 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useState } from 'react';
 import WeatherCard from './WeatherCard';
 import { CityContext } from '../utils/CityContext';
 import { WeatherContext } from '../utils/WeatherContext';
+import useWeeklyWeather from '../utils/Hooks/useWeeklyWeather';
 
 const WeeklyWeather = () => {
   const [cli, setCli] = useState(null);
   const {cityName}=useContext(CityContext)
   const {todayWeather, setTodayWeather}=useContext(WeatherContext)
-  const getWeatherData = async () => {
-    try {
-      const data = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${cityName}&appid=${process.env.REACT_APP_ApiKey}&units=metric`);
-      const json = await data.json();
-      //console.log(json);
+  const [error,setError]=useState(null)
+  
+  useWeeklyWeather(setCli,cityName,todayWeather,setError,setTodayWeather)
 
-      const groupedData = json?.list.reduce((acc, obj) => {
-        const date = obj.dt_txt.split(' ')[0]; // Extract date part
-        if (!acc[date]) {
-          acc[date] = [];
-        }
-        acc[date].push(obj);
-        return acc;
-      }, {});
-      
-      setCli(groupedData);
-      setTodayWeather(groupedData[Object.keys(groupedData).filter((date, index) => index === 0)])
-      console.log(groupedData[Object.keys(groupedData).filter((date, index) => index === 0)])
-      
-    } catch (error) {
-      console.log(error);
-    }
-  };
-  console.log(todayWeather)
-
-  useEffect(() => {
-    getWeatherData();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [cityName]);
-
-  return (cli?.cod==="404"?<h1>{cli?.message}</h1>:
-    <div className="text-center text-white">
-      <p className='text-center text-2xl font-semibold pt-8  '>Weekly Forecast</p>
+  return (error?.cod==="404"?null:
+    <div className="text-center text-white  h-[90%]">
+      <p className='text-center text-2xl font-semibold lg:pt-10 -mt-20 lg:mt-0  '>Weekly Forecast</p>
       <div className='mt-6'>
       {cli &&
         Object.keys(cli).filter((date, index) => index !== 0).map((date) => {

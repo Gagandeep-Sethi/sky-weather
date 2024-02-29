@@ -32,8 +32,8 @@ const CurrentWeather = () => {
       },[cityName])
 
 
-  return (cli?.cod==="404"?<h1>{cli?.message}</h1>:
-    <div className='text-white mt-10'>
+  return (cli?.cod==="404"?<h1 className='text-white font-semibold text-2xl text-center'>OOps.... City not Found , try searching some other city</h1>:
+    <div className='text-white pt-10 lg:border-r-2 border-white h-full '>
       <div>
         <div className="flex items-center justify-center ">
     <h1 className='text-center text-2xl font-semibold'>Current Weather</h1>
